@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace RevitPluginsApp.Plugin2022.ClashManagement
+namespace RevitPluginsApp.Plugin.ClashManagement
 {
     [Transaction(TransactionMode.Manual)]
     public class ClashIndicatorPlacementCmd : IExternalCommand

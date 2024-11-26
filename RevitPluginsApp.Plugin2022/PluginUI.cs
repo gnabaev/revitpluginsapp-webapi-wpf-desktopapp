@@ -1,11 +1,11 @@
 ﻿using Autodesk.Revit.UI;
-using RevitPluginsApp.Plugin2022.ClashManagement;
+using RevitPluginsApp.Plugin.ClashManagement;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Windows.Media.Imaging;
 
-namespace RevitPluginsApp.Plugin2022
+namespace RevitPluginsApp.Plugin
 {
     public class PluginUI : IExternalApplication
     {
