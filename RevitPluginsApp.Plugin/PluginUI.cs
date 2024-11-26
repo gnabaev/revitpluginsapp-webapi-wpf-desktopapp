@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.UI;
 using RevitPluginsApp.Plugin.ClashManagement;
+using RevitPluginsApp.Plugin.PinningElements;
 using System;
 using System.IO;
 using System.Reflection;
@@ -22,14 +23,21 @@ namespace RevitPluginsApp.Plugin
             string tabName = "WildBIM";
             application.CreateRibbonTab(tabName);
 
-            RibbonPanel clashManagementPanel = application.CreateRibbonPanel(tabName, "Управление коллизиями");
+            RibbonPanel commonPanel = application.CreateRibbonPanel(tabName, "Общее");
 
             PushButtonData clashIndicatorPlacementButton = new PushButtonData(nameof(ClashIndicatorPlacementCmd), "Размещение индикатора", assemblyLocation, typeof(ClashIndicatorPlacementCmd).FullName)
             {
                 LargeImage = new BitmapImage(new Uri(iconsDirectoryPath + "ClashIndicatorPlacementCmd.png"))
             };
 
-            clashManagementPanel.AddItem(clashIndicatorPlacementButton);
+            commonPanel.AddItem(clashIndicatorPlacementButton);
+
+            PushButtonData PinElementsButton = new PushButtonData(nameof(PinElementsCmd), "Закрепление элементов", assemblyLocation, typeof(PinElementsCmd).FullName)
+            {
+                LargeImage = new BitmapImage(new Uri(iconsDirectoryPath + "PinElementsCmd.png"))
+            };
+
+            commonPanel.AddItem(PinElementsButton);
 
             return Result.Succeeded;
         }
