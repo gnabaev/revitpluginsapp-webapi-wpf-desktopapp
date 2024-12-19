@@ -18,7 +18,7 @@ namespace RevitPluginsApp.Plugin
         public Result OnStartup(UIControlledApplication application)
         {
             string assemblyLocation = Assembly.GetExecutingAssembly().Location;
-            string iconsDirectoryPath = Path.GetDirectoryName(assemblyLocation) + @"\icons\";
+            string iconsDirectoryPath = Path.GetDirectoryName(assemblyLocation) + @"\Icons\";
 
             string tabName = "WildBIM";
             application.CreateRibbonTab(tabName);
