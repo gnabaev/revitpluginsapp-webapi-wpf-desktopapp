@@ -85,7 +85,14 @@ namespace RevitPluginsApp.Plugin.PinningElements
                         }
                         else
                         {
-                            continue;
+                            using (Transaction transaction = new Transaction(doc))
+                            {
+                                transaction.Start("Открепление осей");
+
+                                grid.Pinned = false;
+
+                                transaction.Commit();
+                            }
                         }
                     }
                 }
@@ -116,7 +123,14 @@ namespace RevitPluginsApp.Plugin.PinningElements
                         }
                         else
                         {
-                            continue;
+                            using (Transaction transaction = new Transaction(doc))
+                            {
+                                transaction.Start("Открепление уровней");
+
+                                level.Pinned = false;
+
+                                transaction.Commit();
+                            }
                         }
                     }
                 }
@@ -138,7 +152,7 @@ namespace RevitPluginsApp.Plugin.PinningElements
                         {
                             using (Transaction transaction = new Transaction(doc))
                             {
-                                transaction.Start("Закрепление осей");
+                                transaction.Start("Закрепление RVT-связей");
 
                                 rvtLink.Pinned = true;
 
@@ -147,19 +161,25 @@ namespace RevitPluginsApp.Plugin.PinningElements
                         }
                         else
                         {
-                            continue;
+                            using (Transaction transaction = new Transaction(doc))
+                            {
+                                transaction.Start("Открепление RVT-связей");
+
+                                rvtLink.Pinned = false;
+
+                                transaction.Commit();
+                            }
                         }
                     }
                 }
 
-                TaskDialog.Show("Уведомление", "Элементы закреплены успешно.");
+                TaskDialog.Show("Уведомление", "Элементы закреплены/откреплены успешно.");
                 Close();
             }
             else
             {
                 TaskDialog.Show("Ошибка", "Не выбрана ни одна категория.");
             }
-
         }
 
         private void cancel_Click(object sender, RoutedEventArgs e)
